@@ -2,7 +2,12 @@
 
 This is a simple example package with Nim module.
 
+See blog post for more info: [Python packages using Nim](https://domaindriven.dev/2020/08/30/python-packages-using-nim/).
+
 ## Build steps
+
+NOTE: These build steps are using Linux/macOS or similar. For Windows, the Nim
+module will be compiled to `mymodule.pyd` instead of `mymodule.so`.
 
 ```bash
 cd py_module_nim/example_pkg/
@@ -11,14 +16,13 @@ nim compile --threads:on --app:lib --out:mymodule.so mymodule
 cd ..
 virtualenv venv
 source venv/bin/activate
-python main.py
-```
-
-```bash
 python setup.py sdist bdist_wheel
 ```
 
+## Publish steps
+
 ```bash
+cd py_module_nim/
 pip install twine
 twine upload dist/*
 ```
